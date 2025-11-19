@@ -6,10 +6,22 @@ import com.economy.dto.output.PropostaOutputDto;
 
 public class PropostaMapper {
     public static PropostaOutputDto toDto(Proposta proposta) {
-        return null;
+        return new PropostaOutputDto(
+                proposta.getId(),
+                proposta.getEmpresaId(),
+                proposta.getDescricao(),
+                proposta.getValor(),
+                proposta.getDataCriacao()
+        );
     }
 
     public static Proposta toModel(PropostaInputDto dto) {
-        return null;
+        return new Proposta(
+                0,
+                dto.getEmpresaId(),
+                dto.getDescricao(),
+                dto.getValor(),
+                dto.getDataCriacao()
+        );
     }
 }
