@@ -1,6 +1,5 @@
 package com.economy.application.service;
 
-import com.economy.domain.model.Deposito;
 import com.economy.domain.service.PixService;
 import com.economy.dto.input.PixDepositInputDto;
 import com.economy.dto.output.PixQrCodeOutputDto;
