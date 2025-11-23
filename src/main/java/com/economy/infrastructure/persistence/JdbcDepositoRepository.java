@@ -17,7 +17,7 @@ public class JdbcDepositoRepository implements DepositoRepository {
     @Override
     public Deposito criarDeposito(Deposito deposito) {
         String sql = """
-            INSERT INTO deposito (empresa_id, valor, origem, data_deposito)
+            INSERT INTO t_en_deposito (empresa_id, valor, origem, data_deposito)
             VALUES (?, ?, ?, ?)
         """;
 
@@ -47,7 +47,7 @@ public class JdbcDepositoRepository implements DepositoRepository {
     @Override
     public Deposito editarDeposito(Deposito deposito, int idDeposito) {
         String sql = """
-            UPDATE deposito
+            UPDATE t_en_deposito
             SET empresa_id = ?, valor = ?, origem = ?, data_deposito = ?
             WHERE id = ?
         """;
@@ -67,13 +67,13 @@ public class JdbcDepositoRepository implements DepositoRepository {
             return deposito;
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error updating deposito with id " + idDeposito, e);
+            throw new RuntimeException("Error updating t_en_deposito with id " + idDeposito, e);
         }
     }
 
     @Override
     public void deletarDeposito(int idDeposito) {
-        String sql = "DELETE FROM deposito WHERE id = ?";
+        String sql = "DELETE FROM t_en_deposito WHERE id = ?";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -88,7 +88,7 @@ public class JdbcDepositoRepository implements DepositoRepository {
 
     @Override
     public List<Deposito> listarDepositos() {
-        String sql = "SELECT * FROM deposito ORDER BY id DESC";
+        String sql = "SELECT * FROM t_en_deposito ORDER BY id DESC";
         List<Deposito> lista = new ArrayList<>();
 
         try (Connection conn = databaseConnection.getConnection();
@@ -108,7 +108,7 @@ public class JdbcDepositoRepository implements DepositoRepository {
 
     @Override
     public List<Deposito> listarByEmpresaId(int empresaId) {
-        String sql = "SELECT * FROM deposito WHERE empresa_id = ? ORDER BY id DESC";
+        String sql = "SELECT * FROM t_en_deposito WHERE empresa_id = ? ORDER BY id DESC";
         List<Deposito> lista = new ArrayList<>();
 
         try (Connection conn = databaseConnection.getConnection();
@@ -123,7 +123,7 @@ public class JdbcDepositoRepository implements DepositoRepository {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error listing depositos for empresa " + empresaId, e);
+            throw new RuntimeException("Error listing t_en_depositos for empresa " + empresaId, e);
         }
 
         return lista;
